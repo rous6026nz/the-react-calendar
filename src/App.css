@@ -27,13 +27,39 @@
   color: #61dafb;
 }
 
-.App h2 {
+.top-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   width: 80%;
-  margin: 2rem auto 0;
+  margin: 3rem auto 0;
+}
+
+.top-section h2 {
+  margin: auto 1rem;
   text-align: left;
   font-size: 2rem;
   font-weight: 400;
   color: #eaeaea;
+}
+
+.top-section button {
+  font-size: 1.5rem;
+  height: 2rem;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.top-section button:hover {
+  background: #fff;
+  color: #333;
+  cursor: pointer;
 }
 
 @keyframes App-logo-spin {

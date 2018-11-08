@@ -1,7 +1,6 @@
 import React from 'react'
 
 import './Calendar.css'
-
 import Month from '../Month/Month'
 
 /* 
@@ -14,7 +13,6 @@ export default class Calendar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      year: '2018',
       months: [
         {id: 1, monthName: 'January', numDays: 31},
         {id: 2, monthName: 'February', numDays: 28},
@@ -36,7 +34,7 @@ export default class Calendar extends React.Component {
     return (
       <div className="Calendar">
         {
-          this.state.months.length > 10 && this.state.months.map( month => <Month key={month.id} year={this.state.year} monthName={month.monthName} monthNumDays={month.numDays}/>)
+          this.state.months.length > 10 && this.state.months.map( month => <Month key={month.id} year={this.props.currentYear} monthName={month.monthName} monthNumDays={month.numDays}/>)
         }
       </div>
     )
