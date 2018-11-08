@@ -1,0 +1,48 @@
+.Day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14.22%;
+  margin-bottom: 3px;
+  font-size: .8rem;
+  color: #fff;
+  font-weight: 400;
+  -webkit-transition: color .2s ease-in-out;
+  -moz-transition: color .2s ease-in-out;
+  -o-transition: color .2s ease-in-out;
+  transition: color .2s ease-in-out;
+}
+
+.Day:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.current {
+  background: #ee3124;
+}
+
+.holiday {
+  background: rgba(255, 255, 0, 0.3);
+}
+
+.birthday {
+  background: rgba(0, 0, 255, 0.3);
+}
+
+.anniversary {
+  background: rgba(128, 128, 128, 0.3);
+}
+
+.busy {
+  background: rgba(0, 128, 128, 0.3);
+}

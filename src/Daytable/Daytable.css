@@ -1,0 +1,15 @@
+/* Mobile first */
+.Daytable {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding: 5px 0;
+}
+
+.Daytable li {
+  color: #fafafabb;
+  text-align: center;
+  width: 14%;
+}

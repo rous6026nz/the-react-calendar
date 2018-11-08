@@ -1,0 +1,8 @@
+/* Mobile first */
+.Footer {
+  background: #fafafa;
+  border-top: 2px solid #fff;
+  box-shadow: 0 -.1px 0 0 #333;
+  padding: 2rem;
+  margin-top: 4rem;
+}

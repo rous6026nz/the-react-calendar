@@ -1,0 +1,33 @@
+/* Mobile first */
+.Month {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.Month h3 {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #ee3124;
+}
+.month-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Large phone and tablet media query */
+@media screen and (min-width: 600px) {
+  .Month {
+    width: 45%;
+  }
+}
+
+/* Desktop and large screens media query */
+@media screen and (min-width: 988px) {
+  .Month {
+    width: 30%;
+  }
+}
