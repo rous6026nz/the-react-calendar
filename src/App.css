@@ -57,8 +57,8 @@
 }
 
 .top-section button:hover {
-  background: #fff;
-  color: #333;
+  border: 1px solid #ee3124;
+  color: #ee3124;
   cursor: pointer;
 }
 

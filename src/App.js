@@ -10,7 +10,8 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      year: 2017
+      year: new Date().getFullYear(),
+      showModal: false
     }
     this.handleYearSelectClick = this.handleYearSelectClick.bind(this)
   }
@@ -30,11 +31,13 @@ class App extends Component {
     }
   }
 
-
-
   render() {
     return (
       <div className="App">
+        {/* {
+          this.state.showModal &&
+          <Modal closeModal={this.handleCloseModal} />
+        } */}
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="header-title">The React Calendar</h1>
