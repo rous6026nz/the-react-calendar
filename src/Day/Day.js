@@ -13,13 +13,16 @@ const Day = props => {
   // Get the current day element.
   const isToday = new Date(props.month + ' ' + props.date + ', ' + props.year).toLocaleString().split(',')[0]
 
+  // Check if the current element is today.
   if (currentDay === isToday) {
+
+    // Update the isCurrent variable. 
     isCurrent = 'current'
   }
 
   return (
-    <div className='Day' onClick={props.openModal}>
-      <div className={`circle ${isCurrent}`}>
+    <div className='Day' id={props.id} onClick={props.openModal}>
+      <div className={`circle ${isCurrent} ? ${isCurrent} : ${props.event}`}>
         {props.date}
       </div>
     </div>

@@ -1,9 +1,13 @@
 /* Mobile first */
 .Month {
-  width: 100%;
-  text-align: left;
-  margin-bottom: 2rem;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 2rem 0;
 }
+
 .Month h3 {
   width: 90%;
   margin: 0 auto;
@@ -11,6 +15,7 @@
   font-weight: 400;
   color: #ee3124;
 }
+
 .month-container {
   display: flex;
   flex-direction: row;

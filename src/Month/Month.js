@@ -9,23 +9,37 @@ import Modal from '../Modal/Modal'
 /* 
   A stateful component that will track Modal state:
   - isOpen
+  - targetEl
+  - calendarEvent
 */
 export default class Month extends React.Component {
 
   constructor (props) {
     super(props)
     this.state = {
-      isopen: false
+      isOpen: false,
+      targetEl: '',
+      calendarEvent: ''
     }
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
+    this.handleAddEvent = this.handleAddEvent.bind(this)
   }
 
   // Handle open Modal.
-  handleOpenModal = e => this.setState({isopen: true})
+  handleOpenModal = e => this.setState({isOpen: true, targetEl: e.currentTarget.id})
 
   // Handle close Modal.
-  handleCloseModal = e => this.setState({isopen: false})
+  handleCloseModal = e => this.setState({isOpen: false})
+
+  // Handle add event.
+  handleAddEvent = e => {
+    if (e.target.id === 'clear') {
+      this.setState({ calendarEvent: '', isOpen: false })
+    } else {
+      this.setState({ calendarEvent: e.target.id, isOpen: false })
+    }
+  }
 
   // Create the days of the month.
   handleCreateMonth = () => {
@@ -38,12 +52,14 @@ export default class Month extends React.Component {
 
       // Build the month calendar.
       daysList.push(<Day 
+        id={this.props.monthName + '_' + i}
         key={`${i}`} 
         year={this.props.year} 
         month={this.props.monthName} 
         date={`${i}`} 
         day={`${getDays}`}
         openModal={(e) => this.handleOpenModal(e)}
+        event={this.state.calendarEvent}
         />)
     }
 
@@ -64,9 +80,15 @@ export default class Month extends React.Component {
   render () {
     return (
       <div className="Month">
-        {
-          this.state.isopen && <Modal closeDialog={this.handleCloseModal}/>
-        }
+      {
+        this.state.isOpen && 
+        <Modal 
+          closeDialog={this.handleCloseModal}
+          target={this.state.targetEl ? this.state.targetEl : null}
+          year={this.props.year}
+          addEvent={this.handleAddEvent}
+          />
+      }
         <h3>{this.props.monthName}</h3>
         <Daytable />
         <div className="month-container">

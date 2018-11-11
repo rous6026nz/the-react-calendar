@@ -32,17 +32,23 @@
 }
 
 .holiday {
-  background: rgba(255, 255, 0, 0.3);
+  background: rgb(255, 255, 0);
+  color: #333;
 }
 
 .birthday {
-  background: rgba(0, 0, 255, 0.3);
+  background: rgb(0, 0, 255);
 }
 
 .anniversary {
-  background: rgba(128, 128, 128, 0.3);
+  background: rgb(128, 128, 128);
 }
 
 .busy {
-  background: rgba(0, 128, 128, 0.3);
+  background: rgb(60, 156, 4);
+}
+
+.clear {
+  background: none;
+  border: none;
 }

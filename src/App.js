@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg';
 import './App.css';
 
+import Panel from './Panel/Panel'
 import Calendar from './Calendar/Calendar'
 import Footer from './Footer/Footer'
 
@@ -10,8 +11,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      year: new Date().getFullYear(),
-      showModal: false
+      year: new Date().getFullYear()
     }
     this.handleYearSelectClick = this.handleYearSelectClick.bind(this)
   }
@@ -34,18 +34,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* {
-          this.state.showModal &&
-          <Modal closeModal={this.handleCloseModal} />
-        } */}
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="header-title">The React Calendar</h1>
         </header>
         <div className="top-section">
-          <button onClick={this.handleYearSelectClick} value="previous">-</button>
-          <h2>{this.state.year}</h2>
-          <button onClick={this.handleYearSelectClick} value="next">+</button>
+          <div className="top-section-container">
+            <div className="year-stepper">
+              <button onClick={this.handleYearSelectClick} value="previous">-</button>
+              <h2>{this.state.year}</h2>
+              <button onClick={this.handleYearSelectClick} value="next">+</button>
+            </div>
+            <Panel />
+          </div>
         </div>
         <Calendar currentYear={this.state.year} />
         <Footer />
