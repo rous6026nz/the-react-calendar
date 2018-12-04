@@ -16,11 +16,11 @@ const Modal = props => {
         <span className="date">{formattedDate} {props.year}</span>
         <p>Choose which event you would like to assign to:</p>
         <ul className="event-list">
-          <li><div className="swatch anniversary" id="anniversary" onClick={props.addEvent}></div>Anniversary</li>
-          <li><div className="swatch birthday" id="birthday" onClick={props.addEvent}></div>Birthday</li>
-          <li><div className="swatch busy" id="busy" onClick={props.addEvent}></div>Busy</li>
-          <li><div className="swatch holiday" id="holiday" onClick={props.addEvent}></div>Holiday</li>
-          <li><div className="swatch clear" id="clear" onClick={props.addEvent}></div>Clear</li>
+          <li><div className="swatch anniversary" id="anniversary" onClick={(e) => props.addEvent(e, props.targetId)}></div>Anniversary</li>
+          <li><div className="swatch birthday" id="birthday" onClick={(e) => props.addEvent(e, props.targetId)}></div>Birthday</li>
+          <li><div className="swatch busy" id="busy" onClick={(e) => props.addEvent(e, props.targetId)}></div>Busy</li>
+          <li><div className="swatch holiday" id="holiday" onClick={(e) => props.addEvent(e, props.targetId)}></div>Holiday</li>
+          <li><div className="swatch clear" id="clear" onClick={(e) => props.addEvent(e, props.targetId)}></div>Clear</li>
         </ul>
       </div>
     </div>

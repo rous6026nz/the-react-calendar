@@ -17,9 +17,9 @@ export default class Month extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      daysList: [],
       isOpen: false,
-      targetEl: '',
-      calendarEvent: ''
+      targetEl: ''
     }
     this.handleOpenModal = this.handleOpenModal.bind(this)
     this.handleCloseModal = this.handleCloseModal.bind(this)
@@ -33,34 +33,51 @@ export default class Month extends React.Component {
   handleCloseModal = e => this.setState({isOpen: false})
 
   // Handle add event.
-  handleAddEvent = e => {
-    if (e.target.id === 'clear') {
-      this.setState({ calendarEvent: '', isOpen: false })
-    } else {
-      this.setState({ calendarEvent: e.target.id, isOpen: false })
-    }
+  handleAddEvent = (e, curElem) => {
+    let newState = {...this.state}
+    let elemId = curElem - 2
+
+    // if (parseInt(curElem) === parseInt(this.state.daysList[curElem].key)) {
+      if (e.target.id === 'clear') {
+        
+        newState.daysList = newState.daysList.slice()
+        newState.daysList[elemId] = {...newState.daysList[elemId]}
+        newState.daysList[elemId].event = 'clear'
+        newState.isOpen = false
+        this.setState(newState)
+      } else {
+        newState.daysList = newState.daysList.slice()
+        newState.daysList[elemId] = {...newState.daysList[elemId]}
+        newState.daysList[elemId].event = e.target.id
+        newState.isOpen = false
+        this.setState(newState)
+      }
+    // }
   }
+
+  componentWillMount () {
+    this.handleCreateMonth()
+  } 
 
   // Create the days of the month.
   handleCreateMonth = () => {
-    // Store each day of the month.
-    let daysList = []
+
+    const daysArr = []
 
     // Loop to create each day as many times as numDays.
     for (let i = 1; i <= this.props.monthNumDays; i ++) {
       const getDays = new Date(this.props.monthName + ' ' + i + ', ' + this.props.year).getDay()
 
-      // Build the month calendar.
-      daysList.push(<Day 
-        id={this.props.monthName + '_' + i}
-        key={`${i}`} 
-        year={this.props.year} 
-        month={this.props.monthName} 
-        date={`${i}`} 
-        day={`${getDays}`}
-        openModal={(e) => this.handleOpenModal(e)}
-        event={this.state.calendarEvent}
-        />)
+      daysArr.push({
+        id: this.props.monthName + '_' + i,
+        key: i, 
+        year: this.props.year,
+        month: this.props.monthName,
+        date: i, 
+        day: getDays,
+        openModal: (e) => this.handleOpenModal(e),
+        event: ''
+      })
     }
 
     // Get the first day of each month.
@@ -71,13 +88,29 @@ export default class Month extends React.Component {
 
       // Add the required extra dummy days to align the days of the month with their days of the week.
       for (let e = 0; e < getFirstDayOfMonth; e ++) {
-        daysList.unshift(<Day />)
+        daysArr.unshift(<Day />)
       }
     }
 
-    return daysList
+    // Update state.
+    this.setState({daysList: daysArr})
   }
+
   render () {
+    const elemId = this.state.targetEl.split('_')[1]
+
+    const month = this.state.daysList.map(day => {
+      return <Day 
+              id={day.id}
+              key={day.id}
+              year={day.year}
+              month={day.month}
+              date={day.date}
+              day={day.day}
+              openModal={day.openModal}
+              event={day.event} />
+    })
+
     return (
       <div className="Month">
       {
@@ -85,6 +118,7 @@ export default class Month extends React.Component {
         <Modal 
           closeDialog={this.handleCloseModal}
           target={this.state.targetEl ? this.state.targetEl : null}
+          targetId={elemId}
           year={this.props.year}
           addEvent={this.handleAddEvent}
           />
@@ -93,7 +127,7 @@ export default class Month extends React.Component {
         <Daytable />
         <div className="month-container">
         {
-          this.handleCreateMonth()
+          month
         }
         </div>
       </div>
